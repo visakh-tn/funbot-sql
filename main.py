@@ -177,22 +177,22 @@ async def on_message(message):
             num = round(num)
             if num == last_number_dict[message.guild.id] + 1:
                 if message.author.id == last_counter_dict[message.guild.id]:
-                    await message.add_reaction('🛑')
+                    await message.add_reaction('\u1F6D1')
                     return
                 last_number_dict[message.guild.id] = last_number_dict[message.guild.id] + 1
                 last_counter_dict[message.guild.id] = message.author.id
                 cidc.update_guilds(message.guild.id,"last_number",last_number_dict[message.guild.id])
                 cidc.update_guilds(message.guild.id,"last_counter",message.author.id)
                 sb.add_point(pid=message.author.id,col_name="c_right")
-                await message.add_reaction('✅')
+                await message.add_reaction('\u2705')
                 if num < 1000:
                     if num%100==0:
                         sb.add_point(pid=message.author.id,col_name="c_100")
-                        await message.add_reaction('💯')
+                        await message.add_reaction('\U0001F4AF')
                 else:
                     if num%1000==0:
                         sb.add_point(pid=message.author.id,col_name="c_1k")
-                        await message.add_reaction('🎖️')
+                        await message.add_reaction('\U0001F396')
                 return
             else:
                 last_number_dict[message.guild.id] = 0
@@ -200,7 +200,7 @@ async def on_message(message):
 
                 cidc.update_guilds(message.guild.id,"last_number",0)
                 cidc.update_guilds(message.guild.id,"last_counter",None)
-                await message.add_reaction('❌')
+                await message.add_reaction('\u274C')
                 sb.add_point(pid=message.author.id,col_name="c_wrong")
                 embd = discord.Embed(title="Broken counting streak",
                                      description=f"<@{message.author.id}> 🫵 broke the streak, start from 0",
